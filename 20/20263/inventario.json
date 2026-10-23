@@ -1,0 +1,28 @@
+[
+    {
+        "codigo": "string",
+        "nombre": "string",
+        "categoria": "string",
+        "precio": 1.0,
+        "stock": 0,
+        "compatible_con_": "string"
+    },
+    {
+        "categoria": "aceites",
+        "codigo": "PEP02",
+        "nombre": "Aceite Motul 7100",
+        "stock": 5
+    },
+    {
+        "categoria": "cadenas",
+        "codigo": "PEP03",
+        "nombre": "cadena de rodamiento",
+        "stock": 15
+    },
+    {
+        "categoria": "cadenas",
+        "codigo": "PEP04",
+        "nombre": "pastilla de frenos",
+        "stock": 2
+    }
+]
