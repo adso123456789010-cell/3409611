@@ -1,6 +1,7 @@
 import json
 import aiofiles
 import asyncio
+import os
 
 ARCHIVO_BD = "inventario.json"
 db_lock = asyncio.Lock()
@@ -11,7 +12,7 @@ async def leer_base_datos():
             contenido = await f.read()
             return json.loads(contenido)
     except FileNotFoundError:
-        return []  # Lista vacía
+        return []  
 
 async def guardar_base_datos(datos):
     async with aiofiles.open(ARCHIVO_BD, mode="w", encoding="utf-8") as f:
@@ -26,3 +27,34 @@ async def obtener_producto(codigo):
                 return dato
         raise KeyError(f"Producto {codigo} no ha sido encontrado.")
 
+
+ARCHIVO_TALLER = "taller.json"
+
+
+async def leer_ordenes():
+    try:
+        async with aiofiles.open(
+            ARCHIVO_TALLER,
+            mode="r",
+            encoding="utf-8"
+        ) as f:
+            contenido = await f.read()
+
+            if not contenido.strip():
+                return []
+
+            return json.loads(contenido)
+
+    except FileNotFoundError:
+        return []
+
+
+async def guardar_ordenes(ordenes):
+    async with aiofiles.open(
+        ARCHIVO_TALLER,
+        mode="w",
+        encoding="utf-8"
+    ) as f:
+        await f.write(
+            json.dumps(ordenes, indent=4, ensure_ascii=False)
+        )
